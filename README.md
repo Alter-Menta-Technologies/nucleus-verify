@@ -1,167 +1,228 @@
-Nucleus Verify
+# Nucleus Verify
 
-Signed proof that your code was reviewed. Independently verifiable. Forever.
+**Signed proof that your code was reviewed. Independently verifiable. Forever.**
 
-🌐 verify.altermenta.com · ✉️ contact@altermenta.com · 🏢 Alter Menta Technologies
+[![Verified by Nucleus](https://verify.altermenta.com/badge/NV-078123)](https://verify.altermenta.com/c/NV-078123)
 
-The problem no existing tool solves
-The way software is written has changed permanently. AI generates thousands of lines in minutes. Code looks correct. Tests pass. But:
+🌐 [verify.altermenta.com](https://verify.altermenta.com) · ✉️ [contact@altermenta.com](mailto:contact@altermenta.com) · 🏢 [Alter Menta Technologies](https://altermenta.com)
 
-Does the code actually implement what it claims to implement?
-Are the tests real, or do they pass without asserting anything?
-Can you prove to your auditor, your customer, or your board what was reviewed, when, and by what engine — with a result they can independently verify?
+---
 
-Vulnerability scanners give you a list of findings. SAST tools give you a dashboard. Neither gives you proof. Nucleus does.
+## The problem
 
-What Nucleus Verify produces
-Every scan generates three permanent, cryptographically linked artifacts:
-1. Ed25519-Signed Certificate
+AI writes code faster than anyone can review it. Code looks correct. Tests pass. But three questions remain unanswered:
 
-Tamper-evident and independently verifiable
-Contains verdict, trust score, full scan scope, and findings summary
-Portable: embed in a README, attach to a PR, send to a customer, hand to an auditor
-Publicly verifiable at verify.altermenta.com/c/NV-XXXXXX
-Available as a PDF download for compliance packages and security reviews
+- **Does it actually do what it claims?** Hollow functions, assertion-less tests, and hallucinated implementations are invisible to linters.
+- **Can you prove it was reviewed?** Not a dashboard. Not a score. An independently verifiable artifact that anyone — an auditor, a customer, a board — can check themselves.
+- **What changed between versions?** A cryptographic chain of custody showing exactly what was introduced, resolved, or unchanged across every scan.
 
-2. Deterministic Proof Pack
+Vulnerability scanners give you a list. SAST tools give you a dashboard. Neither gives you **proof**.
 
-Same code + same seed = same hash, every time
-Anyone can independently replay the proof pack and get the exact same result
-Creates a cryptographic chain of custody no other tool in the market provides
-Challengeable: if a customer or auditor disputes a result, they can verify it themselves
+---
 
-3. Tamper-Evident Verification History
+## What a scan produces
 
-Every scan supersedes the last, delta-tracked and cryptographically linked
-Shows exactly what changed, what was introduced, and what was resolved between runs
-A complete, independently verifiable history of every scan from day one
-Built for auditors who need to demonstrate continuous verification over time
+Every scan generates three permanently linked artifacts:
 
+### Ed25519-Signed Certificate
+A tamper-evident certificate containing the verdict, trust score, full scan scope, and findings summary. Embed it in a README, attach it to a PR, send it to a customer, or hand it to an auditor. Publicly verifiable at `verify.altermenta.com/c/NV-XXXXXX`. Available as a PDF download for compliance packages.
 
-Verdicts
-VerdictMeaning✓ VERIFIEDAll critical gates passed⚠ PARTIALSome gates passed — scope limitations noted✗ UNVERIFIEDOne or more critical gates failed
-Every certificate includes honest scope disclosure — an explicit record of what Nucleus did not check. In a market full of tools that imply complete coverage, that honesty is itself a trust signal. Enterprise security teams know that any tool claiming 100% coverage is lying. Nucleus never does.
+### Deterministic Proof Pack
+Same code + same seed = same hash, every time. Anyone can independently replay the proof pack and arrive at the exact same result. This creates a cryptographic chain of custody that no other tool in the market provides. If a customer disputes a result, they can verify it themselves.
 
-Engine quality
-Tested against 50 of the most widely recognised open source repositories across 7 languages including Flask, Express, Django, Lodash, Gin, Tokio, and Underscore.
-MetricResultRepositories benchmarked915Consistency errors0 — same code always produces the same hashFalse positive rate on Tier 1 repos0.0%Credibility killer findings0 across 50 reposBattery tests526 passed, 0 failedTotal tests2,955 passed, 0 failedOperator coverage431 / 432 operators verified
-Determinism is mathematically guaranteed and cryptographically proven — not a claim.
+### Tamper-Evident Verification History
+Every scan supersedes the last — delta-tracked and cryptographically linked. The history shows exactly what changed, what was introduced, and what was resolved between runs. Built for auditors who need to demonstrate continuous verification over time.
 
-Analysis depth
-Standard operators — 432
-Hand-written deterministic operators across 31 families, tuned for low false positives. These cover structural patterns, security posture, AI-specific risks, compliance patterns, and code quality that no other tool detects. Built with a comprehensive exception library covering known ecosystem patterns across every supported language.
-Supported languages: Python · JavaScript · TypeScript · Go · Java · C · C++ · C# · Ruby · Rust · PHP · Swift · Kotlin · Scala · Dart · Shell · Perl · Lua · R — plus 65+ languages via Semgrep
-Enhanced pack operators — 249
-Nine specialist packs running in parallel. Each pack is independently scoped and opt-in.
-Semgrep engine — 3,800+ rules
-The Security Deep pack runs the full Semgrep open source ruleset — battle-tested rules maintained by the security community, covering every major framework and updated continuously.
-CVE database — 250,238 known vulnerabilities
+---
+
+## Verdicts
+
+| Verdict | Meaning |
+|---|---|
+| ✓ **VERIFIED** | All five critical gates passed |
+| ⚠ **PARTIAL** | Most gates passed — scope limitations noted |
+| ✗ **UNVERIFIED** | One or more critical gates failed |
+
+Every certificate explicitly discloses what Nucleus did **not** check. In a market full of tools that imply complete coverage, that honesty is itself a trust signal.
+
+---
+
+## Verification gates
+
+Five gates run on every scan. Each is binary — pass or fail, no partial credit.
+
+| Gate | What it checks |
+|---|---|
+| `gate_v2` | Detectable code structure — functions, classes, imports, routes |
+| `gate_d` | Determinism — same prompt and seed produces identical hash on replay |
+| `contract` | Contract adherence — all claimed capabilities have supporting code evidence |
+| `build` | Build integrity — source files compile without syntax errors |
+| `gate_s` | Structural integrity — cross-file references and architecture consistency |
+
+---
+
+## Engine quality
+
+Tested against 50 of the most widely recognised open source repositories — Flask, Django, Express, Lodash, Gin, Tokio, Underscore, and more.
+
+| Metric | Result |
+|---|---|
+| Repositories benchmarked | 915 |
+| Consistency errors | **0** |
+| False positive rate on Tier 1 repos | **0.0%** |
+| Credibility killer findings across 50 repos | **0** |
+| Battery tests | 526 passed, 0 failed |
+| Total tests | 2,955 passed, 0 failed |
+| Operators verified | 431 / 432 |
+
+Determinism is mathematically guaranteed and cryptographically proven — not a claim. The same code always produces the same hash. 915 repositories confirm this with zero exceptions.
+
+---
+
+## Analysis depth
+
+### Standard scan — 432 operators across 31 families
+
+Hand-written deterministic operators covering:
+
+- **Security** — injection, authentication, cryptography, session management, secrets, API surface
+- **AI code risks** — hallucination, hollow code, assertion-less tests, LLM security patterns
+- **Compliance patterns** — mapped to 11 frameworks across every finding
+- **Code quality** — complexity, dead code, error handling, scaffolding detection
+- **Supply chain** — CVE detection, typosquatting, lockfile integrity, licence compliance
+- **Infrastructure** — CI/CD, Kubernetes, secrets in config, hardcoded credentials
+
+**Supported languages:** Python · JavaScript · TypeScript · Go · Java · C · C++ · C# · Ruby · Rust · PHP · Swift · Kotlin · Scala · Dart · Shell · Perl · Lua · R — plus 65+ via Semgrep
+
+### Enhanced packs — 249 additional operators
+
+Nine specialist packs that run in parallel. Total scan time equals the slowest pack selected, not the sum.
+
+| Pack | Focus | Time |
+|---|---|---|
+| 🔒 **Security Deep** | OWASP Top 10, CWE mapping, Semgrep 3,800+ rules | 3–8 min |
+| 📦 **Dependency & Supply Chain** | 250,238 CVEs, licence compliance, supply chain risk | 2–4 min |
+| ⚖️ **Compliance** | 11 frameworks — GDPR, HIPAA, PCI-DSS, DORA, FCA, PSD2, SWIFT CSP, ISO 27001, SOC2, OWASP LLM, NIST AI RMF | 3–6 min |
+| 🤖 **AI Code Trust** | Hallucination, AI drift, hollow code, LLM security | 1–2 min |
+| 📊 **Code Quality & Debt** | Technical debt scoring, dead code, cyclomatic complexity | 2–4 min |
+| 🔏 **Secrets Deep** | Entropy-based detection, 100 secret pattern families | 1–2 min |
+| 📋 **Documentation** | README quality, contract vs implementation match, onboarding score | 1–2 min |
+| 🧪 **Test Effectiveness** | Assertion quality, assertion-less test detection, coverage estimation | 1–2 min |
+| 🔬 **CodeQL Deep** *(Enterprise)* | GitHub's analysis engine — finds what everything else misses | 15–90 min |
+
+### CVE database — 250,238 vulnerabilities
+
 Synced from OSV across PyPI, npm, Go, crates.io, Maven, and NuGet. Every dependency checked against known vulnerabilities with CVSS scoring and fix availability.
-CodeQL — enterprise tier
-GitHub's own deep analysis engine. The most thorough static analysis available at any price point. Enterprise tier only. Always runs async with email delivery on completion.
-Combined effective coverage: 250,000+ rules and vulnerabilities
 
-The eight enhanced scan packs
-Packs run in parallel — total scan time equals the slowest pack selected, not the sum of all packs.
-PackWhat it analysesTime🔒 Security DeepOWASP Top 10, deep SAST, CWE mapping, Semgrep 3,800+ rules3–8 min📦 Dependency & Supply ChainCVE lookup (250K+ vulns), licence compliance, typosquatting, supply chain risk2–4 min⚖️ ComplianceGDPR, HIPAA, PCI-DSS, SOC2, DORA, FCA, PSD2, SWIFT CSP, ISO 27001, OWASP LLM, NIST AI RMF3–6 min🤖 AI Code TrustHallucination detection, AI drift, hollow code, LLM security patterns1–2 min📊 Code Quality & DebtTechnical debt scoring, dead code, cyclomatic complexity2–4 min🔏 Secrets DeepEntropy-based detection, 100 secret pattern families1–2 min📋 DocumentationREADME quality, contract vs implementation match, onboarding score1–2 min🧪 Test EffectivenessAssertion quality, assertion-less test detection, coverage estimation1–2 min🔬 CodeQL Deep (Enterprise)GitHub's analysis engine — finds what everything else misses15–90 min
+---
 
-Security Deep — what it covers
+## Compliance coverage
 
-OWASP Top 10 — full coverage across all supported languages
-CWE mapping — findings mapped to Common Weakness Enumeration identifiers
-Injection — SQL, command, LDAP, XPath, template injection per framework
-Authentication & session management — broken auth, weak session tokens, insecure defaults
-Cryptography — weak algorithms, short key lengths, IV reuse, hardcoded keys
-API security — auth bypass, rate limiting gaps, mass assignment, IDOR patterns
-Framework-specific patterns — Django, Flask, FastAPI, Express, Spring, Gin, Next.js, React, and more
-Language-specific deep dives — memory safety (C/C++, Rust), concurrency issues (Go, Java), prototype pollution (JavaScript)
+11 frameworks mapped to findings automatically on every standard scan. No additional configuration required.
 
+| Framework | Jurisdiction | In Force |
+|---|---|---|
+| GDPR | European Union | 2018 |
+| HIPAA | United States | 1996 |
+| PCI-DSS v4.0 | Global Financial | 2024 |
+| SOC2 | Global | — |
+| DORA | European Union | January 2025 |
+| FCA Operational Resilience | United Kingdom | 2022 |
+| PSD2 / Open Banking | EU + UK | 2018 |
+| SWIFT CSP CSCF v2024 | Global Financial | 2024 |
+| ISO 27001:2022 | Global | 2022 |
+| OWASP LLM Top 10 | Global | 2025 |
+| NIST AI RMF 1.0 | US / Global | 2023 |
 
-Dependency & Supply Chain — what it covers
+> Nucleus detects structural compliance patterns. This is not a compliance certification and does not replace a qualified auditor. Every certificate makes this explicit.
 
-CVE detection — direct and transitive dependencies checked against 250,238 known vulnerabilities
-CVSS scoring — Critical / High / Medium / Low with fix availability
-Unfixed CVE age — flags vulnerabilities unfixed for over 12 months
-Typosquatting — Levenshtein distance analysis against top packages per ecosystem
-Licence compliance — full SPDX matrix, GPL contamination detection, AGPL in commercial contexts
-Supply chain risk — single-maintainer packages, abandoned dependencies, install script inspection
-Lockfile integrity — lockfile vs manifest discrepancy, missing integrity hashes
+---
 
+## How it works
 
-AI Code Trust — unique to Nucleus
-No other verification tool was built for the AI code era. This pack detects risks that only exist in AI-generated codebases:
+```
+1. Submit — public URL, private token, ZIP upload, or API
+2. Select packs — choose what your situation requires
+3. Scan — packs run in parallel, results in minutes
+4. Receive — signed certificate, proof pack, verification history entry
+5. Share — public verification URL anyone can independently check
+6. Repeat — every future scan links to the last, building your chain of custody
+```
 
-Hallucination detection — code that claims to implement something but doesn't
-AI drift — README and documentation claims that don't match actual implementation
-Hollow code — structurally present but logically empty functions
-Assertion-less tests — tests written by AI that pass without verifying anything
-LLM security patterns — prompt injection vectors, unsafe model output handling, insecure API key management in AI-integrated code
+---
 
+## GitHub Action
 
-Compliance pack — 11 frameworks
-Structural pattern detection mapped to 11 compliance frameworks. Every finding on the compliance certificate includes the framework reference, the structural pattern detected, and the file location.
-FrameworkJurisdictionGDPREuropean UnionHIPAAUnited StatesPCI-DSSGlobal FinancialSOC2GlobalDORAEuropean UnionFCA Operational ResilienceUnited KingdomPSD2 / Open BankingEU + UKSWIFT CSPGlobal FinancialISO 27001:2022GlobalOWASP LLM Top 10GlobalNIST AI RMF 1.0US / Global
-
-Important: Nucleus detects structural compliance patterns. This is not a compliance certification and does not replace a qualified auditor. Certificate language makes this clear on every scan.
-
-
-Verification gates
-Every scan runs five gates. Verdicts are binary — a gate either passes or fails. No partial credit on critical gates.
-GateWhat it checksgate_v2Detectable code structure — functions, classes, imports, routesgate_dDeterminism — same prompt + seed produces identical hash on replaycontractContract adherence — all claimed capabilities have supporting code evidencebuildBuild integrity — source files compile without syntax errorsgate_sStructural integrity — cross-file references and architecture consistency
-
-Enterprise — tailored verification
-For enterprise customers, Nucleus goes beyond the standard pack set:
-Custom operator development
-Our team works with your security and compliance teams to build operators specific to your internal coding standards, proprietary frameworks, and regulatory requirements. Custom operators are version-controlled and scoped to your organisation only.
-Custom rule upload
-Enterprise customers can upload their own Semgrep-compatible YAML rule sets. Your internal security standards enforced automatically on every scan.
-Private deployment options
-Nucleus can be deployed to scan private repositories with no code leaving your controlled environment. We clone, scan, and delete. Nothing is retained.
-Compliance pack customisation
-Standard compliance packs cover 11 frameworks. Enterprise customers can request additional coverage tailored to their regulatory environment.
-Volume certificate management
-Enterprise accounts include a verification history dashboard — every certificate issued across your organisation, searchable, filterable, and exportable for audit packages.
-Dedicated onboarding
-Enterprise accounts include direct onboarding support, CI/CD integration assistance, and a named contact for ongoing support.
-
-How it works
-1. Submit any repository — public URL, private token, ZIP upload, or API
-2. Select your enhanced scan packs — run what your situation requires
-3. Packs execute in parallel — total time = slowest pack selected
-4. Receive your signed certificate, proof pack, and verification history entry
-5. Share the public verification URL — anyone can independently verify it
-6. Every future scan links to the last — building your tamper-evident history
-
-Pricing
-PlanIncludesPriceFreeStandard scan, proof pack, verification historyFreePlus+ Full result JSON, Report PDF, 1 enhanced pack trial$20/monthBusinessAll 8 enhanced packs, signed certificate PDF, full ledger$50/seat/monthEnterpriseEverything + CodeQL, custom operators, private deployment, SLAContact us
-
-GitHub Action
 Add verification to your CI/CD pipeline in one step:
-yaml- name: Verify with Nucleus
+
+```yaml
+- name: Verify with Nucleus
   uses: altermenta/nucleus-verify-action@v1
   with:
     api_key: ${{ secrets.NUCLEUS_API_KEY }}
     repo: ${{ github.repository }}
+```
 
-Who it's for
-SectorValueFintech & PaymentsPCI-DSS, DORA, FCA, PSD2, SWIFT structural evidence. CVE detection in payment libraries. Signed certificates for customer security reviewsHealthcare & Life SciencesHIPAA structural pattern detection. PHI exposure risk. Audit trail for every scanAI companiesThe only tool built specifically to verify AI-generated code at structural depthDefence & GovernmentTamper-evident chain of custody from day one. Independently verifiable resultsPre-IPO SaaSSOC2, ISO 27001 structural evidence. Accelerate enterprise customer security reviews with a portable signed artifactLegal TechnologyData handling pattern detection. Evidence of due diligence for regulatory purposesIndie developersShip with confidence. Put a signed certificate in your README
+---
 
-What Nucleus does not verify
-Every certificate explicitly discloses what was not checked:
+## Pricing
 
-Semantic correctness of business logic
-Runtime behaviour under production load
-Dynamic security testing (fuzzing, DAST, penetration testing)
-Runtime performance benchmarking
-Concurrency correctness under load
-Data integrity under concurrent writes
+| Plan | What's included | Price |
+|---|---|---|
+| **Free** | Standard scan · Proof pack · Verification history | Free |
+| **Plus** | + Full result JSON · Report PDF · 1 enhanced pack trial | $20 / month |
+| **Business** | All 8 enhanced packs · Signed certificate PDF · Full ledger | $50 / seat / month |
+| **Enterprise** | Everything + CodeQL · Custom operators · Private deployment · SLA | Contact us |
 
-This disclosure is not a weakness. It is the honest boundary of what static structural verification can claim — and the reason the certificate means something.
+---
 
-Get started
-verify.altermenta.com — scan your first repository free in under 60 seconds.
+## Enterprise
 
-Nucleus Verify v1.1.1 · Deterministic verification for the AI era · Alter Menta Technologies Ltd · 124 City Road, London EC1V 2NX · Reg. 17036841
-👉 **[verify.altermenta.com](https://altermenta.com)**
+For organisations that need to go further:
 
-✉️ Enterprise enquiries: [contact@altermenta.com](mailto:contact@altermenta.com)
+- **Custom operators** — built to your internal coding standards, proprietary frameworks, and regulatory requirements. Version-controlled and scoped to your organisation only.
+- **Custom rule upload** — upload your own Semgrep-compatible YAML rule sets. Your internal security standards enforced automatically on every scan.
+- **Private deployment** — scan private repositories with no code leaving your controlled environment. Clone, scan, delete. Nothing retained.
+- **Extended compliance** — additional framework coverage beyond the standard 11, including bespoke regulatory requirements.
+- **Volume certificate management** — every certificate issued across your organisation, searchable, filterable, and exportable for audit packages.
+- **Dedicated onboarding** — direct support, CI/CD integration assistance, and a named contact.
+
+---
+
+## Who it's for
+
+| Sector | Why Nucleus |
+|---|---|
+| **Fintech & Payments** | DORA, FCA, PSD2, SWIFT CSP structural evidence. CVE detection in payment libraries. Signed certificates for customer security reviews. |
+| **Healthcare & Life Sciences** | HIPAA structural pattern detection. PHI exposure risk. Audit trail for every scan. |
+| **AI companies** | The only verification tool built specifically for AI-generated code. Detects hollow functions, assertion-less tests, and hallucinated implementations. |
+| **Defence & Government** | Tamper-evident chain of custody from day one. Independently verifiable results. |
+| **Pre-IPO SaaS** | SOC2, ISO 27001 structural evidence. Accelerate enterprise security reviews with a portable signed artifact. |
+| **Indie developers** | Ship with confidence. Put a signed certificate in your README. |
+
+---
+
+## What Nucleus does not verify
+
+Every certificate explicitly discloses the boundaries of what static structural verification can claim:
+
+- Semantic correctness of business logic
+- Runtime behaviour under production load
+- Dynamic security testing (fuzzing, DAST, penetration testing)
+- Runtime performance benchmarking
+- Concurrency correctness under load
+- Data integrity under concurrent writes
+
+This is not a weakness. It is why the certificate means something.
+
+---
+
+## Get started
+
+**[verify.altermenta.com](https://verify.altermenta.com)** — scan your first repository free in under 60 seconds.
+
+---
+
+*Nucleus Verify v1.1.1 · Deterministic verification for the AI era*
+*Alter Menta Technologies Ltd · 124 City Road, London EC1V 2NX · Reg. 17036841*
+
