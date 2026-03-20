@@ -1,0 +1,20 @@
+name: Nucleus Verify
+   
+   on:
+     push:
+       branches: [main]
+     pull_request:
+       branches: [main]
+   
+   jobs:
+     verify:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v4
+         
+         - name: Nucleus Verify
+           uses: Alter-Menta-Technologies/nucleus-verify-action@v1
+           with:
+             api_key: ${{ secrets.NUCLEUS_API_KEY }}
+             fail_on_unverified: 'false'
+             fail_on_findings: 'false'
